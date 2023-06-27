@@ -9,8 +9,17 @@ const rightScore = document.getElementById('score--1');
 const rollDiceBtn = document.querySelector('.btn--roll');
 const newGameBtn = document.querySelector('.btn--new');
 const holdBtn = document.querySelector('.btn--hold');
+
+const dice = document.querySelector('.dice');
+
 let activePlayerLeft = true;
-let secretNumber = Math.trunc(Math.random() * 6 + 1);
 
 leftScore.textContent = 0;
 rightScore.textContent = 0;
+dice.classList.add('hidden');
+
+rollDiceBtn.addEventListener('click', () => {
+  const diceRoll = Math.trunc(Math.random() * 6 + 1);
+  dice.classList.remove('hidden');
+  dice.src = `dice-${diceRoll}.png`;
+});
