@@ -1,5 +1,8 @@
 'use strict';
 
+const leftPlayerSection = document.querySelector('.player--0');
+const rightPlayerSection = document.querySelector('.player--1');
+
 const leftPlayer = document.querySelector('.player--0');
 const rightPlayer = document.querySelector('.player--1');
 
@@ -15,7 +18,8 @@ const holdBtn = document.querySelector('.btn--hold');
 
 const dice = document.querySelector('.dice');
 
-let activePlayerLeft = true;
+const scores = [0, 0];
+let activePlayer = 0;
 let currentScore = 0;
 
 // start with both scores as 0 and no dice visible
@@ -32,12 +36,14 @@ rollDiceBtn.addEventListener('click', () => {
   if (diceRoll !== 1) {
     // add dice roll to current score
     currentScore += diceRoll;
-    console.log(currentScore);
-    leftCurrentScore.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
   } else {
     // switch player
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
     currentScore = 0;
-    leftCurrentScore.textContent = 0;
-    activePlayerLeft = false;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    leftPlayerSection.classList.toggle('player--active');
+    rightPlayerSection.classList.toggle('player--active');
   }
 });
