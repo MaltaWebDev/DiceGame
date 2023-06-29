@@ -13,4 +13,4 @@ Technologies used: Vanilla JS, HTML5, CSS3.
 
 Deployed:
 
-[Click here to play!👾](URL)
+[🎲Click here to play!🎲](https://maltawebdev.github.io/DiceGame/)
