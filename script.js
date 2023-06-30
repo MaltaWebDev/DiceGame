@@ -44,12 +44,21 @@ rollDiceBtn.addEventListener('click', () => {
   } else {
     // switch player
     document.getElementById(`current--${activePlayer}`).textContent = 0;
+    // reset current score
     currentScore = 0;
+    // toggle active player
     activePlayer = activePlayer === 0 ? 1 : 0;
+    // toggle bg colour for active section
     leftPlayerSection.classList.toggle('player--active');
     rightPlayerSection.classList.toggle('player--active');
   }
 });
 
 // hold score functionality
-holdBtn.addEventListener('click', () => {});
+holdBtn.addEventListener('click', () => {
+  if (activePlayer == 0) {
+    leftScore.textContent = currentScore;
+  } else {
+    rightScore.textContent = currentScore;
+  }
+});
