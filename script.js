@@ -29,8 +29,11 @@ dice.classList.add('hidden');
 
 // roll dice functionality
 rollDiceBtn.addEventListener('click', () => {
+  // generate random number
   const diceRoll = Math.trunc(Math.random() * 6 + 1);
+  // show dice
   dice.classList.remove('hidden');
+  // decide which player is rolling
   dice.src = `dice-${diceRoll}.png`;
 
   if (diceRoll !== 1) {
@@ -47,3 +50,6 @@ rollDiceBtn.addEventListener('click', () => {
     rightPlayerSection.classList.toggle('player--active');
   }
 });
+
+// hold score functionality
+holdBtn.addEventListener('click', () => {});
