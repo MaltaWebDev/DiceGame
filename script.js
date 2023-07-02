@@ -74,7 +74,7 @@ rollDiceBtn.addEventListener('click', () => {
   }
 });
 
-// hold score
+// hold score and end game when score >= 100
 holdBtn.addEventListener('click', () => {
   if (playing) {
     // add current score to active player's score
@@ -82,7 +82,7 @@ holdBtn.addEventListener('click', () => {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
     // check if player's score is >= 100
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       // finish the game
       playing = false;
       dice.classList.add('hidden');
