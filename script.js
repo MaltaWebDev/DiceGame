@@ -18,9 +18,28 @@ const holdBtn = document.querySelector('.btn--hold');
 
 const dice = document.querySelector('.dice');
 
-const scores = [0, 0];
-let activePlayer = 0;
-let currentScore = 0;
+let scores = [];
+let activePlayer;
+let currentScore;
+let playing;
+
+const init = function () {
+  scores = [0, 0];
+  activePlayer = 0;
+  currentScore = 0;
+  playing = true;
+  leftCurrentScore.textContent = 0;
+  rightCurrentScore.textContent = 0;
+  rightScore.textContent = 0;
+  leftScore.textContent = 0;
+  dice.classList.add('hidden');
+  leftPlayerSection.classList.remove('player--winner');
+  rightPlayerSection.classList.remove('player--winner');
+  leftPlayerSection.classList.add('player--active');
+  rightPlayerSection.classList.remove('player--active');
+};
+
+init();
 
 const switchPlayer = function () {
   // switch player
@@ -34,15 +53,7 @@ const switchPlayer = function () {
   rightPlayerSection.classList.toggle('player--active');
 };
 
-// start with both scores as 0 and no dice visible
-leftScore.textContent = 0;
-rightScore.textContent = 0;
-dice.classList.add('hidden');
-
-// create variable which ends game when toggled
-let playing = true;
-
-// roll dice functionality
+// roll dice
 rollDiceBtn.addEventListener('click', () => {
   if (playing) {
     // generate random number
@@ -63,10 +74,9 @@ rollDiceBtn.addEventListener('click', () => {
   }
 });
 
-// hold score functionality
+// hold score
 holdBtn.addEventListener('click', () => {
   if (playing) {
-    console.log('hold button');
     // add current score to active player's score
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
@@ -91,12 +101,13 @@ holdBtn.addEventListener('click', () => {
 
 // reset game on new game btn click
 newGameBtn.addEventListener('click', () => {
-  console.log('new game btn clicked!');
-  leftPlayerSection.classList.remove('player--winner');
-  rightPlayerSection.classList.remove('player--winner');
-  currentScore = 0;
   leftCurrentScore.textContent = 0;
   rightCurrentScore.textContent = 0;
   rightScore.textContent = 0;
   leftScore.textContent = 0;
+  leftPlayerSection.classList.remove('player--winner');
+  rightPlayerSection.classList.remove('player--winner');
+  leftPlayerSection.classList.add('player--active');
+  rightPlayerSection.classList.remove('player--active');
+  init();
 });
