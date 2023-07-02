@@ -22,6 +22,18 @@ const scores = [0, 0];
 let activePlayer = 0;
 let currentScore = 0;
 
+const switchPlayer = function () {
+  // switch player
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  // reset current score
+  currentScore = 0;
+  // toggle active player
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  // toggle bg colour for active section
+  leftPlayerSection.classList.toggle('player--active');
+  rightPlayerSection.classList.toggle('player--active');
+};
+
 // start with both scores as 0 and no dice visible
 leftScore.textContent = 0;
 rightScore.textContent = 0;
@@ -42,23 +54,28 @@ rollDiceBtn.addEventListener('click', () => {
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
   } else {
-    // switch player
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    // reset current score
-    currentScore = 0;
-    // toggle active player
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    // toggle bg colour for active section
-    leftPlayerSection.classList.toggle('player--active');
-    rightPlayerSection.classList.toggle('player--active');
+    switchPlayer();
   }
 });
 
 // hold score functionality
 holdBtn.addEventListener('click', () => {
-  if (activePlayer == 0) {
-    leftScore.textContent = currentScore;
+  console.log('hold button');
+  // add current score to active player's score
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  // check if player's score is >= 100
+  if (scores[activePlayer] >= 100) {
+    // finish the game
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
   } else {
-    rightScore.textContent = currentScore;
+    // switch to the next player
+    switchPlayer();
   }
 });
