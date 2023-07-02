@@ -88,3 +88,15 @@ holdBtn.addEventListener('click', () => {
     }
   }
 });
+
+// reset game on new game btn click
+newGameBtn.addEventListener('click', () => {
+  console.log('new game btn clicked!');
+  leftPlayerSection.classList.remove('player--winner');
+  rightPlayerSection.classList.remove('player--winner');
+  currentScore = 0;
+  leftCurrentScore.textContent = 0;
+  rightCurrentScore.textContent = 0;
+  rightScore.textContent = 0;
+  leftScore.textContent = 0;
+});
